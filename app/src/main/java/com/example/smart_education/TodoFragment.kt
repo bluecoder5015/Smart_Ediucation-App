@@ -1,14 +1,13 @@
 package com.example.smart_education
-
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
+import android.content.ClipData
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView.OnItemClickListener
-import android.widget.TextView
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.smart_education.Retrofit.RetrofitInterface
 import kotlinx.android.synthetic.main.fragment_todo.*
 import retrofit2.Call
@@ -122,6 +121,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
             datePicker.show()
         }
 
+
         done_todo.setOnClickListener {
 
             todo_add.visibility=View.VISIBLE
@@ -175,6 +175,9 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
                 }
             })
         }
+
     }
+
+
 
 }
