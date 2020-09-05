@@ -80,6 +80,7 @@ class LoginActivity2 : AppCompatActivity() {
                             progress.dismiss()
 
                             Intent(this@LoginActivity2,MainActivity::class.java).also{
+                                it.putExtra("EMAIL",email)
                                 startActivity(it)
                             }
                         }

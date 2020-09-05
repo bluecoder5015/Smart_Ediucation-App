@@ -28,11 +28,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
             Todos("Follow Dialy routine", "false", false),
             Todos("Get ready for work", "false", false)
         )
-        val email = "yogendrasingh5015@gmail.com"
-        /*
-        val city =intent.getStringExtra("city")
-        val village =intent.getStringExtra("village")*/
-
+        val email = activity?.intent?.getStringExtra("EMAIL")
 
         val BASE_URL = "http://192.168.43.208:3000"
 
@@ -102,9 +98,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
             done_todo.visibility = View.VISIBLE
             todo_time.visibility = View.VISIBLE
         }
-        val formate = SimpleDateFormat("dd/ MM /YYYY", Locale.getDefault())
-        val formate1 = SimpleDateFormat("YYYYMMdd", Locale.getDefault())
-        var datedisplay: String = ""
+        val formate = SimpleDateFormat("dd/MM/YYYY", Locale.getDefault())
         var date: String = ""
 
         todo_time.setOnClickListener {
@@ -116,8 +110,8 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
                     selectedDate.set(Calendar.YEAR, year)
                     selectedDate.set(Calendar.MONTH, month)
                     selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                    datedisplay = formate.format(selectedDate.time)
-                    date =formate1.format(selectedDate.time)
+                    date = formate.format(selectedDate.time)
+
 
                     Toast.makeText(context, "date : $date", Toast.LENGTH_SHORT).show()
                 },
@@ -146,7 +140,6 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
             map1["email"] = email
             map1["title"] = title
             map1["date"] = date
-            map1["datedisplay"]=datedisplay
 
             val call1: Call<Void?>? = retrofitInterface.executeTodoinsert(map1)
             call1!!.enqueue(object : Callback<Void?> {
