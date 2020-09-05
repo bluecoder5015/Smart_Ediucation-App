@@ -8,53 +8,19 @@
     tools:context=".Editprofile">
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_profile_username"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Username"
-        app:endIconDrawable="@drawable/ic_person"
-        app:endIconMode="custom"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_profile_userEmail"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Email"
-        app:endIconDrawable="@drawable/ic_email"
-        app:endIconMode="custom"
-        android:layout_below="@id/edit_profile_username">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textEmailAddress" />
-    </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edit_profile_userNumber"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
         android:hint="Phone"
         app:endIconDrawable="@drawable/ic_phone"
         app:endIconMode="custom"
-        android:layout_below="@id/edit_profile_userEmail">
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -118,13 +84,18 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/edit_profile_save"
+        android:id="@+id/edit_profile_save_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/edit_profile_work"
         android:layout_marginTop="30dp"
         android:text="Save" />
-
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/profile_ui_design"
+        android:layout_below="@id/edit_profile_save_btn"
+        android:layout_marginTop="115dp"/>
 
 
 
