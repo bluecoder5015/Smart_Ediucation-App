@@ -10,4 +10,9 @@
         <item>Biology</item>
         <item>English</item>
     </string-array>
+
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="not_registered_register_now"><u> Doesn`t have account! Register </u></string>
+    <string name="forgot">Forgot Password..?</string>
 </resources>

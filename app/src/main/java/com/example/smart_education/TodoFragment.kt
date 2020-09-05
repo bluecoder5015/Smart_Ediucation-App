@@ -4,8 +4,6 @@ import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView.OnItemClickListener
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,12 +19,15 @@ import java.util.*
 import kotlin.collections.HashMap
 
 
-class TodoFragment : Fragment(R.layout.fragment_todo) {
+class TodoFragment : Fragment(R.layout.fragment_todo){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val todoList: MutableList<Todos>
+        val todoList = mutableListOf(
+            Todos("Follow Dialy routine", "false", false),
+            Todos("Get ready for work", "false", false)
+        )
         val email = "yogendrasingh5015@gmail.com"
         /*
         val city =intent.getStringExtra("city")
@@ -51,8 +52,8 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
         val currentTime: String = SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date())
 
         val map: HashMap<String?, String?> = HashMap()
-        //map["email"] = email
-        map["done"] = "No"
+        map["email"] = email
+        map["date"] = currentTime
 
         val call: Call<Array<Todos>?>? = retrofitInterface.executeGettodos(map)
         call!!.enqueue(object : Callback<Array<Todos>?> {
@@ -66,10 +67,9 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
                         context, "Tasks",
                         Toast.LENGTH_SHORT
                     ).show()
+
                     val adapt = result?.toList()?.let { TodoAdapter(it) }
-
-
-                    rv_todo.adapter =adapt
+                    rv_todo.adapter = adapt
                     rv_todo.layoutManager = LinearLayoutManager(context)
                     progress.dismiss()
 
@@ -93,44 +93,49 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
         })
 
         //val adapter = TodoAdapter(todoList)
-       // rv_todo.adapter =adapter
-       // rv_todo.layoutManager = LinearLayoutManager(activity)
+        // rv_todo.adapter =adapter
+        // rv_todo.layoutManager = LinearLayoutManager(activity)
 
         todo_add.setOnClickListener {
-            todo_add.visibility=View.GONE
-            new_todo.visibility =View.VISIBLE
-            done_todo.visibility =View.VISIBLE
-            todo_time.visibility =View.VISIBLE
+            todo_add.visibility = View.GONE
+            new_todo.visibility = View.VISIBLE
+            done_todo.visibility = View.VISIBLE
+            todo_time.visibility = View.VISIBLE
         }
-        val formate = SimpleDateFormat("dd/ MM /YYYY",Locale.getDefault())
-        var date:String=""
+        val formate = SimpleDateFormat("dd/ MM /YYYY", Locale.getDefault())
+        val formate1 = SimpleDateFormat("YYYYMMdd", Locale.getDefault())
+        var datedisplay: String = ""
+        var date: String = ""
 
         todo_time.setOnClickListener {
             val now = Calendar.getInstance()
             val datePicker = DatePickerDialog(
-                this.requireContext(), DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                this.requireContext(),
+                DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                     val selectedDate = Calendar.getInstance()
                     selectedDate.set(Calendar.YEAR, year)
                     selectedDate.set(Calendar.MONTH, month)
                     selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                    date = formate.format(selectedDate.time)
+                    datedisplay = formate.format(selectedDate.time)
+                    date =formate1.format(selectedDate.time)
 
                     Toast.makeText(context, "date : $date", Toast.LENGTH_SHORT).show()
                 },
-                now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH)
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
             )
             datePicker.show()
         }
 
         done_todo.setOnClickListener {
 
-            todo_add.visibility=View.VISIBLE
-            new_todo.visibility =View.GONE
+            todo_add.visibility = View.VISIBLE
+            new_todo.visibility = View.GONE
             todo_time.visibility = View.GONE
-            done_todo.visibility =View.GONE
+            done_todo.visibility = View.GONE
 
             val title = new_todo.text.toString()
-            val duedate = date
 
             /* val todo =Todos(title,duedate,false)
             todoList.add(todo)
@@ -138,9 +143,10 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
             adapter.notifyItemInserted(todoList.size-1)*/
 
             val map1: HashMap<String?, String?> = HashMap()
-            map1["email"]=email
+            map1["email"] = email
             map1["title"] = title
-            map1["date"] = duedate
+            map1["date"] = date
+            map1["datedisplay"]=datedisplay
 
             val call1: Call<Void?>? = retrofitInterface.executeTodoinsert(map)
             call1!!.enqueue(object : Callback<Void?> {
@@ -176,5 +182,4 @@ class TodoFragment : Fragment(R.layout.fragment_todo) {
             })
         }
     }
-
 }
