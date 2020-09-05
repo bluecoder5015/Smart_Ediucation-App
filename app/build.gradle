@@ -52,4 +52,8 @@ dependencies {
     //Recycler Views
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
+    // Cyclar image
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+
 }
