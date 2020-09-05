@@ -30,13 +30,12 @@ class Editprofile : AppCompatActivity() {
         val retrofitInterface: RetrofitInterface =
             retrofit.create(RetrofitInterface::class.java)
         val map : HashMap<String?,String?> = HashMap()
-        edit_profile_username.editText?.text.toString()
         map["organization"]=edit_profile_org.editText?.text.toString()
         map["class"]=edit_profile_std.editText?.text.toString()
         map["phone"]=edit_profile_userNumber.editText?.text.toString()
         map["profession"]=edit_profile_work.editText?.text.toString()
         map["email"]=email
-        edit_profile_save.setOnClickListener {
+        edit_profile_save_btn.setOnClickListener {
             val call: Call<Void> = retrofitInterface.update(map)
             call!!.enqueue(object : Callback<Void> {
                 override fun onResponse(

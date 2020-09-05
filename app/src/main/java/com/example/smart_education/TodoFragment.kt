@@ -183,7 +183,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
             val call1: Call<Void?>? = retrofitInterface.executeTodoinsert(map1)
             call1!!.enqueue(object : Callback<Void?> {
                 override fun onResponse(
-                    call: Call<Void?>?,
+                    call1: Call<Void?>?,
                     response: Response<Void?>
                 ) {
                     if (response.code() == 200) {
@@ -205,7 +205,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
                     }
                 }
 
-                override fun onFailure(call: Call<Void?>, t: Throwable) {
+                override fun onFailure(call1: Call<Void?>, t: Throwable) {
                     Toast.makeText(
                         context, "Try Again",
                         Toast.LENGTH_SHORT

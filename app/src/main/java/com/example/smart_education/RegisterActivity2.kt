@@ -28,7 +28,7 @@ class RegisterActivity2 : AppCompatActivity() {
         var pattern: Pattern
         pattern = Pattern.compile(USERNAME_PATTERN)
 
-        regis_submit.setOnClickListener {
+        regis2_submit.setOnClickListener {
 
             val progress = ProgressDialog(this@RegisterActivity2)
             progress.setMessage("Verifying Credentials :) ")
@@ -119,9 +119,9 @@ class RegisterActivity2 : AppCompatActivity() {
 
             val map: HashMap<String?, String?> = HashMap()
             map["name"]=edit_name
-            map["phone"]=edit_name
-            map["organisation"]=organisation
-            map["password"]=edit_name
+            map["phone"]=edit_phone
+            map["organization"]=organisation
+            map["password"]=edit_password
             map["email"]=edit_email
             map["class"]=standard
 
