@@ -1,5 +1,6 @@
 package com.example.smart_education.Retrofit
 
+import com.example.smart_education.Profile
 import com.example.smart_education.Todos
 import retrofit2.Call
 import retrofit2.http.Body
@@ -26,6 +27,10 @@ interface RetrofitInterface {
         @GET("/notdone/{email}")
         fun executeGetpending(@Path("email") email:String): Call<Array<Todos>?>?
 
+        @POST("/update")
+        fun update(@Body map: HashMap<String?, String?>?):Call<Void>
 
+        @POST("/details/{email}")
+        fun details(@Path ("email") email:String?):Call<Profile>
 
 }
