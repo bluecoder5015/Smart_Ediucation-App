@@ -51,11 +51,11 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
 
         val currentTime: String = SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date())
 
-        val map: HashMap<String?, String?> = HashMap()
+       /* val map: HashMap<String?, String?> = HashMap()
         map["email"] = email
-        map["date"] = currentTime
+        map["date"] = currentTime*/
 
-        val call: Call<Array<Todos>?>? = retrofitInterface.executeGettodos(map)
+        val call: Call<Array<Todos>?>? = retrofitInterface.executeGettodos(email)
         call!!.enqueue(object : Callback<Array<Todos>?> {
             override fun onResponse(
                 call: Call<Array<Todos>?>?,
@@ -148,7 +148,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
             map1["date"] = date
             map1["datedisplay"]=datedisplay
 
-            val call1: Call<Void?>? = retrofitInterface.executeTodoinsert(map)
+            val call1: Call<Void?>? = retrofitInterface.executeTodoinsert(map1)
             call1!!.enqueue(object : Callback<Void?> {
                 override fun onResponse(
                     call: Call<Void?>?,

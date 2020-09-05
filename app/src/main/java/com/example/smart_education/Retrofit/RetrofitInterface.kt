@@ -3,7 +3,9 @@ package com.example.smart_education.Retrofit
 import com.example.smart_education.Todos
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface RetrofitInterface {
         @POST("/login")
@@ -15,13 +17,12 @@ interface RetrofitInterface {
         @POST("/todoinsert")
         fun executeTodoinsert(@Body map: HashMap<String?, String?>?): Call<Void?>?
 
-        @POST("gettodos")
-        fun executeGettodos(@Body map: HashMap<String?, String?>?): Call<Array<Todos>?>?
+        @GET("/done/{email}")
+        fun executeGettodos(@Path("email") email:String): Call<Array<Todos>?>?
 
-        @POST("/notdone/{email}")
-        fun executeVerifyemail(@Body map:HashMap<String?,String?>?): Call<Void?>?
+        @GET("/notdone/{email}")
+        fun executeVerifyemail(@Path("email") email:String): Call<Void?>?
 
-        @POST("/inserttime")
-        fun executeTimeinsert(@Body map: HashMap<String?, String?>?): Call<Void?>?
+
 
 }
