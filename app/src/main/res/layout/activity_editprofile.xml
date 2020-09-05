@@ -72,7 +72,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Work at"
+        android:hint="Profession"
         app:endIconDrawable="@drawable/ic_work"
         app:endIconMode="custom"
         android:layout_below="@id/edit_profile_std"
@@ -89,13 +89,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/edit_profile_work"
         android:layout_marginTop="30dp"
+        android:layout_marginLeft="163dp"
         android:text="Save" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/profile_ui_design"
+        android:src="@drawable/uix_design"
         android:layout_below="@id/edit_profile_save_btn"
-        android:layout_marginTop="115dp"/>
+        android:layout_marginTop="10dp"
+        android:scaleType="fitXY"/>
 
 
 
