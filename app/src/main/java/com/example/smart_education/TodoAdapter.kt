@@ -24,7 +24,7 @@ class TodoAdapter(
         override fun onBindViewHolder(holder: Todoviewholder, position: Int) {
             holder.itemView.apply {
                 title_todo.text =todo[position].title
-                time_todo.text = todo[position].time
+                time_todo.text = todo[position].date
                 done_checkbox.isChecked = false
             }
         }

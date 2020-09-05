@@ -10,13 +10,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var docpreferences: SharedPreferences
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        docpreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
+        var docpreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
         val email = docpreferences.getString("EMAIL","")
 
         val homeFragment = TodoFragment()
@@ -39,16 +39,7 @@ class MainActivity : AppCompatActivity() {
             isVisible =true
         }
 
-        profile_logout_btn.setOnClickListener {
-            val editor:SharedPreferences.Editor = docpreferences.edit()
-            editor.clear()
-            editor.apply()
 
-            Intent(this@MainActivity,LoginActivity2::class.java).also{
-                startActivity(it)
-                finish()
-            }
-        }
     }
 
     private fun setCurrentfragment(fragment :Fragment){

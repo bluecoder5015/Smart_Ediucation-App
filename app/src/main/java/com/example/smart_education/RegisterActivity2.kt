@@ -1,7 +1,9 @@
 package com.example.smart_education
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -17,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.regex.Pattern
 
 class RegisterActivity2 : AppCompatActivity() {
-    val BASE_URL = "http://192.168.43.208:3000"
+    val BASE_URL = "http://192.168.43.114:3000"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,6 +135,9 @@ class RegisterActivity2 : AppCompatActivity() {
                     response: Response<Void?>
                 ) {
                     if (response.code() == 200) {
+                        var sharedPreferences= getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
+                        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                        editor.putString("EMAIL",edit_email).apply()
                         //var result = response.body()
                         Toast.makeText(
                             this@RegisterActivity2, "Registered Sucessfully",
@@ -146,7 +151,10 @@ class RegisterActivity2 : AppCompatActivity() {
                         regis_organisation.editText?.text?.clear()
                         regis_class.editText?.text?.clear()
                         regis_phone.editText?.text?.clear()
-
+                        Intent(this@RegisterActivity2,MainActivity::class.java).also {
+                            startActivity(it)
+                            finish()
+                        }
                     } else if (response.code() == 400) {
                         Toast.makeText(
                             this@RegisterActivity2, "Please try Again!",

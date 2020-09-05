@@ -17,15 +17,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginActivity2 : AppCompatActivity() {
 
-    lateinit var sharedPreferences: SharedPreferences
     var isRemember =false
-    private val BASE_URL = "http://192.168.43.208:3000"
+    private val BASE_URL = "http://192.168.43.114:3000"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login2)
 
-        sharedPreferences= getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
+        var sharedPreferences= getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
         isRemember = sharedPreferences.getBoolean("CHECKBOX",false)
         if(isRemember)
         {
@@ -90,8 +89,8 @@ class LoginActivity2 : AppCompatActivity() {
                             progress.dismiss()
 
                             Intent(this@LoginActivity2,MainActivity::class.java).also{
-                                it.putExtra("EMAIL",email)
                                 startActivity(it)
+                                finish()
                             }
                         }
                         response.code() == 404 -> {

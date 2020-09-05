@@ -2,6 +2,7 @@ package com.example.smart_education
 
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -26,9 +27,10 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
 
         var todolist:List<Todos> = listOf()
         var size=0
-        val email = activity?.intent?.getStringExtra("EMAIL")
+        var docpreferences = activity?.getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
+        val email = docpreferences?.getString("EMAIL","")
 
-        val BASE_URL = "http://192.168.43.208:3000"
+        val BASE_URL = "http://192.168.43.114:3000"
 
         val progress = ProgressDialog(context)
         progress.setMessage("Verifying Credentials :) ")
@@ -47,7 +49,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
         map["email"] = email
         map["date"] = currentTime*/
 
-        val call: Call<Array<Todos>?>? = email?.let { retrofitInterface.executeGetpending(it) }
+        val call: Call<Array<Todos>?>? = retrofitInterface.executeGetpending(email)
         call!!.enqueue(object : Callback<Array<Todos>?> {
             override fun onResponse(
                 call: Call<Array<Todos>?>?,
@@ -100,11 +102,11 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
         var date: String = ""
 
         refresh_todo.setOnClickListener {
-            for(i in 0..size){
-                if(todolist[i].ischecked)
+            for(i in 0 until size){
+                if(todolist[i].done=="Yes")
                 {
                     val title = todolist[i].title
-                    val dat = todolist[i].time
+                    val dat = todolist[i].date
                     val map2: HashMap<String?, String?> = HashMap()
                     map2["email"] = email
                     map2["title"] = title
@@ -155,8 +157,6 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
                     selectedDate.set(Calendar.MONTH, month)
                     selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                     date = formate.format(selectedDate.time)
-
-
                     Toast.makeText(context, "date : $date", Toast.LENGTH_SHORT).show()
                 },
                 now.get(Calendar.YEAR),

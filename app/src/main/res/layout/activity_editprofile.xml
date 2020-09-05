@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/edit_profile_work"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="163dp"
+        android:layout_marginLeft="150dp"
         android:text="Save" />
     <ImageView
         android:layout_width="wrap_content"
