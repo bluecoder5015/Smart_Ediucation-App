@@ -51,7 +51,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
         map["email"] = email
         map["date"] = currentTime*/
 
-        val call: Call<Array<Todos>?>? = retrofitInterface.executeGettodos(email)
+        val call: Call<Array<Todos>?>? = email?.let { retrofitInterface.executeGettodos(it) }
         call!!.enqueue(object : Callback<Array<Todos>?> {
             override fun onResponse(
                 call: Call<Array<Todos>?>?,
@@ -100,7 +100,6 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
         }
         val formate = SimpleDateFormat("dd/MM/YYYY", Locale.getDefault())
         var date: String = ""
-
         todo_time.setOnClickListener {
             val now = Calendar.getInstance()
             val datePicker = DatePickerDialog(
