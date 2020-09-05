@@ -24,10 +24,8 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val todoList = mutableListOf(
-            Todos("Follow Dialy routine", "false", false),
-            Todos("Get ready for work", "false", false)
-        )
+        var todolist:List<Todos> = listOf()
+        var size=0
         val email = activity?.intent?.getStringExtra("EMAIL")
 
         val BASE_URL = "http://192.168.43.208:3000"
@@ -45,13 +43,11 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
         val retrofitInterface: RetrofitInterface =
             retrofit.create(RetrofitInterface::class.java)
 
-        val currentTime: String = SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date())
-
        /* val map: HashMap<String?, String?> = HashMap()
         map["email"] = email
         map["date"] = currentTime*/
 
-        val call: Call<Array<Todos>?>? = retrofitInterface.executeGettodos(email)
+        val call: Call<Array<Todos>?>? = email?.let { retrofitInterface.executeGetpending(it) }
         call!!.enqueue(object : Callback<Array<Todos>?> {
             override fun onResponse(
                 call: Call<Array<Todos>?>?,
@@ -64,7 +60,9 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
                         Toast.LENGTH_SHORT
                     ).show()
 
-                    val adapt = result?.toList()?.let { TodoAdapter(it) }
+                    todolist = result?.toList()!!
+                    size = todolist.size
+                    val adapt = TodoAdapter(todolist)
                     rv_todo.adapter = adapt
                     rv_todo.layoutManager = LinearLayoutManager(context)
                     progress.dismiss()
@@ -101,6 +99,52 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
         val formate = SimpleDateFormat("dd/MM/YYYY", Locale.getDefault())
         var date: String = ""
 
+        refresh_todo.setOnClickListener {
+            for(i in 0..size){
+                if(todolist[i].ischecked)
+                {
+                    val title = todolist[i].title
+                    val dat = todolist[i].time
+                    val map2: HashMap<String?, String?> = HashMap()
+                    map2["email"] = email
+                    map2["title"] = title
+                    map2["date"] = dat
+                    val call2: Call<Void?>? = retrofitInterface.executeDone(map2)
+                    call2!!.enqueue(object : Callback<Void?> {
+                        override fun onResponse(
+                            call: Call<Void?>?,
+                            response: Response<Void?>
+                        ) {
+                            if (response.code() == 200) {
+                                //var result = response.body()
+                                Toast.makeText(
+                                    context, "Task Added",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                progress.dismiss()
+
+                                new_todo.text?.clear()
+
+                            } else if (response.code() == 404) {
+                                Toast.makeText(
+                                    context, "Try Again!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                progress.dismiss()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<Void?>, t: Throwable) {
+                            Toast.makeText(
+                                context, "Try Again",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            progress.dismiss()
+                        }
+                    })
+                }
+            }
+        }
         todo_time.setOnClickListener {
             val now = Calendar.getInstance()
             val datePicker = DatePickerDialog(
@@ -131,11 +175,6 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
 
             val title = new_todo.text.toString()
 
-            /* val todo =Todos(title,duedate,false)
-            todoList.add(todo)
-
-            adapter.notifyItemInserted(todoList.size-1)*/
-
             val map1: HashMap<String?, String?> = HashMap()
             map1["email"] = email
             map1["title"] = title
@@ -154,6 +193,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
                             Toast.LENGTH_SHORT
                         ).show()
                         progress.dismiss()
+
                         new_todo.text?.clear()
 
                     } else if (response.code() == 404) {

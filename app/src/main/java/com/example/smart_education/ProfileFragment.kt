@@ -1,6 +1,8 @@
 package com.example.smart_education
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -11,6 +13,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val email = activity?.intent?.getStringExtra("EMAIL")
         profile_edit_btn.setOnClickListener {
 
             Intent(context,Editprofile::class.java).also {
@@ -27,10 +30,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         profile_history_btn.setOnClickListener {
 
             Intent(context,Todo_history::class.java).also {
+                it.putExtra("EMAILID",email)
                 startActivity(it)
             }
         }
-
 
     }
 

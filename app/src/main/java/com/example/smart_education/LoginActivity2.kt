@@ -25,6 +25,16 @@ class LoginActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login2)
 
+        sharedPreferences= getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
+        isRemember = sharedPreferences.getBoolean("CHECKBOX",false)
+        if(isRemember)
+        {
+            Intent(this@LoginActivity2,MainActivity::class.java).also {
+                startActivity(it)
+                finish()
+            }
+        }
+
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

@@ -17,11 +17,14 @@ interface RetrofitInterface {
         @POST("/todoinsert")
         fun executeTodoinsert(@Body map: HashMap<String?, String?>?): Call<Void?>?
 
+         @POST("/done")
+        fun executeDone(@Body map: HashMap<String?, String?>?): Call<Void?>?
+
         @GET("/done/{email}")
         fun executeGettodos(@Path("email") email:String): Call<Array<Todos>?>?
 
         @GET("/notdone/{email}")
-        fun executeVerifyemail(@Path("email") email:String): Call<Void?>?
+        fun executeGetpending(@Path("email") email:String): Call<Array<Todos>?>?
 
 
 
