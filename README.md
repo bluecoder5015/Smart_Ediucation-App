@@ -27,26 +27,25 @@
 
 ## How to run the application :
 
+	```	
+		Download Code from Github.
+ 		Open Android Studio.
+ 		Click on File-> New-> Import Project.
+ 		Select Directory/Folder.
+ 		Build the project.
 	```
- 	Download Code from Github.
- 	Open Android Studio.
- 	Click on File-> New-> Import Project.
- 	Select Directory/Folder.
- 	Build the project.
  
-	```
- 
-#  Important Points about Test Mode and Production mode:
+##  Important Points about Test Mode and Production mode:
 - Test Mode:
 	- User can move forward to main page without verification of email-id.
 	- User can edit password without email-verification.
 - Production Mode:
 	- Email-id Verification is neccesary.
 
-# Testing Credentials:
+## Testing Credentials:
 
   	```
-    	Email-id : 9198239087r@gmail.com
-    	Password : Abc@1234
+    		Email-id : 9198239087r@gmail.com
+    		Password : Abc@1234
 	```
 
