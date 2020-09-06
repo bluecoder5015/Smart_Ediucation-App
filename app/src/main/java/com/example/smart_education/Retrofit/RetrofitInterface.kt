@@ -28,8 +28,8 @@ interface RetrofitInterface {
         @GET("/notdone/{email}")
         fun executeGetpending(@Path("email") email:String?): Call<Array<Todos>?>?
 
-        @GET("/subject/{coll}/{email}")
-        fun executeTopics(@Path("email") email:String?,topic:String?): Call<Array<Topics>?>?
+        @GET("/subject/{subject}/{email}")
+        fun executeTopics(@Path("subject") subject:String?,@Path("email") email:String?): Call<Array<Topics>?>?
 
         @POST("/subject")
         fun executeAddTopics(@Body map: HashMap<String?, String?>?): Call<Void?>?

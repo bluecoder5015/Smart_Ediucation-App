@@ -88,7 +88,7 @@ class SubjectFragment : Fragment(R.layout.fragment_subject) {
             val map1: HashMap<String?, String?> = HashMap()
             map1["email"] = email
             map1["subject"] = subject
-            map1["topics"] = topic
+            map1["topic"] = topic
 
             val call1: Call<Void?>? = retrofitInterface.executeAddTopics(map1)
             call1!!.enqueue(object : Callback<Void?> {
