@@ -23,7 +23,7 @@ class Editprofile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editprofile)
         //val BASE_URL = "http://192.168.43.208:3000"
-        val BASE_URL = "https://smarteducationv1.herokuapp.com/"
+        val BASE_URL = "https://smarteducationfinal.herokuapp.com/"
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
