@@ -31,7 +31,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
         val email = docpreferences?.getString("EMAIL","")
 
         //val BASE_URL = "http://192.168.43.208:3000"
-        val BASE_URL = "https://smarteducationv1.herokuapp.com/"
+        val BASE_URL = "https://smarteducationfinal.herokuapp.com/"
 
         val progress = ProgressDialog(context)
         progress.setMessage("Refreshing Tasks :) ")

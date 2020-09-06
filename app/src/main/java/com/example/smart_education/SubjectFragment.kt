@@ -24,7 +24,7 @@ class SubjectFragment : Fragment(R.layout.fragment_subject) {
 
 
        // val BASE_URL = "http://192.168.43.208:3000"
-        val BASE_URL = "https://smarteducationv1.herokuapp.com/"
+        val BASE_URL = "https://smarteducationfinal.herokuapp.com/"
 
         val progress = ProgressDialog(context)
         progress.setMessage("Fetching:) ")

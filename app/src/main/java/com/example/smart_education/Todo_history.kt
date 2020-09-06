@@ -21,7 +21,7 @@ class Todo_history : AppCompatActivity() {
 
         val email = intent.getStringExtra("EMAILID")
         //val BASE_URL = "http://192.168.43.208:3000"
-        val BASE_URL = "https://smarteducationv1.herokuapp.com/"
+        val BASE_URL = "https://smarteducationfinal.herokuapp.com/"
 
         val progress = ProgressDialog(this)
         progress.setMessage("Verifying Credentials :) ")
@@ -36,7 +36,7 @@ class Todo_history : AppCompatActivity() {
         val retrofitInterface: RetrofitInterface =
             retrofit.create(RetrofitInterface::class.java)
 
-        val call: Call<Array<Todos>?>? = retrofitInterface.executeGettodos(email)
+        val call: Call<Array<Todos>?>? = retrofitInterface.executeGetpending(email)
         call!!.enqueue(object : Callback<Array<Todos>?> {
             override fun onResponse(
                 call: Call<Array<Todos>?>?,
