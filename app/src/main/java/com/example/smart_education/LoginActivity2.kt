@@ -18,7 +18,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 class LoginActivity2 : AppCompatActivity() {
 
     var isRemember =false
-    val BASE_URL = "http://192.168.43.208:3000"
+    //val BASE_URL = "http://192.168.43.208:3000"
+    val BASE_URL = "https://smarteducationv1.herokuapp.com/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

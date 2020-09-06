@@ -20,7 +20,8 @@ class Todo_history : AppCompatActivity() {
         setContentView(R.layout.activity_todo_history)
 
         val email = intent.getStringExtra("EMAILID")
-        val BASE_URL = "http://192.168.43.208:3000"
+        //val BASE_URL = "http://192.168.43.208:3000"
+        val BASE_URL = "https://smarteducationv1.herokuapp.com/"
 
         val progress = ProgressDialog(this)
         progress.setMessage("Verifying Credentials :) ")

@@ -1,6 +1,6 @@
 package com.example.smart_education.Retrofit
 
-import com.example.smart_education.Data
+import com.example.smart_education.Topics
 import com.example.smart_education.Profile
 import com.example.smart_education.Todos
 import retrofit2.Call
@@ -29,7 +29,7 @@ interface RetrofitInterface {
         fun executeGetpending(@Path("email") email:String?): Call<Array<Todos>?>?
 
         @GET("/subject/{coll}/{email}")
-        fun executeTopics(@Path("email") email:String?,topic:String?): Call<Array<Data>?>?
+        fun executeTopics(@Path("email") email:String?,topic:String?): Call<Array<Topics>?>?
 
         @POST("/subject")
         fun executeAddTopics(@Body map: HashMap<String?, String?>?): Call<Void?>?

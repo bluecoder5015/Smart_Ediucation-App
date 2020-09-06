@@ -4,11 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_todos.view.*
 import kotlinx.android.synthetic.main.topics.view.*
 
 class TopicsAdapter(
-    private var todo: List<Data>
+    private var todo: List<Topics>
     ): RecyclerView.Adapter<TopicsAdapter.Todoviewholder>() {
 
         inner class Todoviewholder(itemview : View) : RecyclerView.ViewHolder(itemview)

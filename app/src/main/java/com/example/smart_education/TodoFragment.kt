@@ -30,10 +30,11 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
         var docpreferences = activity?.getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
         val email = docpreferences?.getString("EMAIL","")
 
-        val BASE_URL = "http://192.168.43.208:3000"
+        //val BASE_URL = "http://192.168.43.208:3000"
+        val BASE_URL = "https://smarteducationv1.herokuapp.com/"
 
         val progress = ProgressDialog(context)
-        progress.setMessage("Verifying Credentials :) ")
+        progress.setMessage("Refreshing Tasks :) ")
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER)
         progress.isIndeterminate = true
         progress.show()

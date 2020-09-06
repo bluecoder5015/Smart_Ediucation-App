@@ -1,5 +1,5 @@
 package com.example.smart_education
 
-data class Data (
+data class Topics (
     var topic:String
 )

@@ -19,7 +19,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.regex.Pattern
 
 class RegisterActivity2 : AppCompatActivity() {
-    val BASE_URL = "http://192.168.43.208:3000"
+    //val BASE_URL = "http://192.168.43.208:3000"
+    val BASE_URL = "https://smarteducationv1.herokuapp.com/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -23,7 +23,8 @@ class SubjectFragment : Fragment(R.layout.fragment_subject) {
         var subject = subject_spinner.selectedItem.toString()
 
 
-        val BASE_URL = "http://192.168.43.208:3000"
+       // val BASE_URL = "http://192.168.43.208:3000"
+        val BASE_URL = "https://smarteducationv1.herokuapp.com/"
 
         val progress = ProgressDialog(context)
         progress.setMessage("Fetching:) ")
@@ -42,14 +43,14 @@ class SubjectFragment : Fragment(R.layout.fragment_subject) {
          map["email"] = email
          map["date"] = currentTime*/
 
-        val call: Call<Array<Data>?>? = retrofitInterface.executeTopics(subject,email)
-        call!!.enqueue(object : Callback<Array<Data>?> {
+        val call: Call<Array<Topics>?>? = retrofitInterface.executeTopics(subject,email)
+        call!!.enqueue(object : Callback<Array<Topics>?> {
             override fun onResponse(
-                call: Call<Array<Data>?>?,
-                response: Response<Array<Data>?>
+                call: Call<Array<Topics>?>?,
+                response: Response<Array<Topics>?>
             ) {
                 if (response.code() == 200) {
-                    val result: Array<Data>? = response.body()
+                    val result: Array<Topics>? = response.body()
                     Toast.makeText(
                         context, "Tasks",
                         Toast.LENGTH_SHORT
@@ -71,7 +72,7 @@ class SubjectFragment : Fragment(R.layout.fragment_subject) {
                 }
             }
 
-            override fun onFailure(call: Call<Array<Data>?>, t: Throwable) {
+            override fun onFailure(call: Call<Array<Topics>?>, t: Throwable) {
                 Toast.makeText(
                     context, "Try Again",
                     Toast.LENGTH_SHORT
