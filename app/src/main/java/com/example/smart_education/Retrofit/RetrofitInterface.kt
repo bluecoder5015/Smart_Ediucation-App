@@ -23,7 +23,7 @@ interface RetrofitInterface {
         fun executeDone(@Body map: HashMap<String?, String?>?): Call<Void?>?
 
         @GET("/done/{email}")
-        fun executeGettodos(@Path("email") email:String): Call<Array<Todos>?>?
+        fun executeGettodos(@Path("email") email:String?): Call<Array<Todos>?>?
 
         @GET("/notdone/{email}")
         fun executeGetpending(@Path("email") email:String?): Call<Array<Todos>?>?

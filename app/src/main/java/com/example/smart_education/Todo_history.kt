@@ -36,7 +36,7 @@ class Todo_history : AppCompatActivity() {
         val retrofitInterface: RetrofitInterface =
             retrofit.create(RetrofitInterface::class.java)
 
-        val call: Call<Array<Todos>?>? = email?.let { retrofitInterface.executeGetpending(it) }
+        val call: Call<Array<Todos>?>? = retrofitInterface.executeGettodos(email)
         call!!.enqueue(object : Callback<Array<Todos>?> {
             override fun onResponse(
                 call: Call<Array<Todos>?>?,
