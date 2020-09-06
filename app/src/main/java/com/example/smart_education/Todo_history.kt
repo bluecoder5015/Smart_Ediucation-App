@@ -1,6 +1,7 @@
 package com.example.smart_education
 
 import android.app.ProgressDialog
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -19,7 +20,9 @@ class Todo_history : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todo_history)
 
-        val email = intent.getStringExtra("EMAILID")
+
+        var docpreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
+        val email = docpreferences?.getString("EMAIL","")
         //val BASE_URL = "http://192.168.43.208:3000"
         val BASE_URL = "https://smarteducationfinal.herokuapp.com/"
 
