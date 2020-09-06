@@ -1,6 +1,7 @@
 package com.example.smart_education
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -19,8 +20,8 @@ class SubjectFragment : Fragment(R.layout.fragment_subject) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val email = activity!!.intent.extras!!.getString("Email")
-        var subject = subject_spinner.selectedItem.toString()
+        var docpreferences = activity?.getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
+        val email = docpreferences?.getString("EMAIL","")
 
 
        // val BASE_URL = "http://192.168.43.208:3000"
@@ -42,7 +43,7 @@ class SubjectFragment : Fragment(R.layout.fragment_subject) {
         /* val map: HashMap<String?, String?> = HashMap()
          map["email"] = email
          map["date"] = currentTime*/
-
+        var subject = subject_spinner.selectedItem.toString()
         val call: Call<Array<Topics>?>? = retrofitInterface.executeTopics(subject,email)
         call!!.enqueue(object : Callback<Array<Topics>?> {
             override fun onResponse(
@@ -58,8 +59,10 @@ class SubjectFragment : Fragment(R.layout.fragment_subject) {
 
 
                     val adapt = result?.toList()?.let { TopicsAdapter(it) }
-                    rv_todo.adapter = adapt
-                    rv_todo.layoutManager = LinearLayoutManager(context)
+                    if(adapt!=null) {
+                        rv_subject.adapter = adapt
+                    }
+                    rv_subject.layoutManager = LinearLayoutManager(context)
                     progress.dismiss()
 
 
@@ -104,7 +107,7 @@ class SubjectFragment : Fragment(R.layout.fragment_subject) {
                         ).show()
                         progress.dismiss()
 
-                        new_todo.text?.clear()
+
 
                     } else if (response.code() == 404) {
                         Toast.makeText(
