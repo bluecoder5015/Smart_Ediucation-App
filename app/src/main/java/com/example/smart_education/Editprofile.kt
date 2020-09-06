@@ -1,5 +1,6 @@
 package com.example.smart_education
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,7 +28,8 @@ class Editprofile : AppCompatActivity() {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        val email=""
+        var docpreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
+        val email = docpreferences?.getString("EMAIL","")
         val retrofitInterface: RetrofitInterface =
             retrofit.create(RetrofitInterface::class.java)
         val map : HashMap<String?,String?> = HashMap()
