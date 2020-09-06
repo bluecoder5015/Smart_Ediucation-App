@@ -26,12 +26,6 @@ class SubjectFragment : Fragment(R.layout.fragment_subject) {
 
        // val BASE_URL = "http://192.168.43.208:3000"
         val BASE_URL = "https://smarteducationfinal.herokuapp.com/"
-
-        val progress = ProgressDialog(context)
-        progress.setMessage("Fetching:) ")
-        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-        progress.isIndeterminate = true
-        progress.show()
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -43,49 +37,59 @@ class SubjectFragment : Fragment(R.layout.fragment_subject) {
         /* val map: HashMap<String?, String?> = HashMap()
          map["email"] = email
          map["date"] = currentTime*/
-        var subject = subject_spinner.selectedItem.toString()
-        val call: Call<Array<Topics>?>? = retrofitInterface.executeTopics(subject,email)
-        call!!.enqueue(object : Callback<Array<Topics>?> {
-            override fun onResponse(
-                call: Call<Array<Topics>?>?,
-                response: Response<Array<Topics>?>
-            ) {
-                if (response.code() == 200) {
-                    val result: Array<Topics>? = response.body()
-                    Toast.makeText(
-                        context, "Tasks",
-                        Toast.LENGTH_SHORT
-                    ).show()
+        buttondone.setOnClickListener {
+            val progress = ProgressDialog(context)
+            progress.setMessage("Fetching:) ")
+            progress.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+            progress.isIndeterminate = true
+            progress.show()
+            val subject = subject_spinner.selectedItem.toString()
+            val call: Call<Array<Topics>?>? = retrofitInterface.executeTopics(subject, email)
+            call!!.enqueue(object : Callback<Array<Topics>?> {
+                override fun onResponse(
+                    call: Call<Array<Topics>?>?,
+                    response: Response<Array<Topics>?>
+                ) {
+                    if (response.code() == 200) {
+                        val result: Array<Topics>? = response.body()
+                        Toast.makeText(
+                            context, "Tasks",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        val adapt = result?.toList()?.let { TopicsAdapter(it) }
+                        if (adapt != null) {
+                            rv_subject.adapter = adapt
+                        }
+                        rv_subject.layoutManager = LinearLayoutManager(context)
+                        progress.dismiss()
 
 
-                    val adapt = result?.toList()?.let { TopicsAdapter(it) }
-                    if(adapt!=null) {
-                        rv_subject.adapter = adapt
+                    } else if (response.code() == 404) {
+                        Toast.makeText(
+                            context, "Try Again!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        progress.dismiss()
                     }
-                    rv_subject.layoutManager = LinearLayoutManager(context)
-                    progress.dismiss()
+                }
 
-
-                } else if (response.code() == 404) {
+                override fun onFailure(call: Call<Array<Topics>?>, t: Throwable) {
                     Toast.makeText(
-                        context, "Try Again!",
+                        context, "Try Again",
                         Toast.LENGTH_SHORT
                     ).show()
                     progress.dismiss()
                 }
-            }
-
-            override fun onFailure(call: Call<Array<Topics>?>, t: Throwable) {
-                Toast.makeText(
-                    context, "Try Again",
-                    Toast.LENGTH_SHORT
-                ).show()
-                progress.dismiss()
-            }
-        })
+            })
+        }
 
         add_topic.setOnClickListener {
-            subject = subject_spinner.selectedItem.toString()
+            val progress = ProgressDialog(context)
+            progress.setMessage("Fetching:) ")
+            progress.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+            progress.isIndeterminate = true
+            progress.show()
+            val subject = subject_spinner.selectedItem.toString()
             val topic= textInputLayout2.editText?.text.toString()
 
             val map1: HashMap<String?, String?> = HashMap()
