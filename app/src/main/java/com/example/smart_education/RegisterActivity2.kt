@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.regex.Pattern
 
 class RegisterActivity2 : AppCompatActivity() {
-    val BASE_URL = "http://192.168.43.114:3000"
+    val BASE_URL = "http://192.168.43.208:3000"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -151,10 +151,7 @@ class RegisterActivity2 : AppCompatActivity() {
                         regis_organisation.editText?.text?.clear()
                         regis_class.editText?.text?.clear()
                         regis_phone.editText?.text?.clear()
-                        Intent(this@RegisterActivity2,MainActivity::class.java).also {
-                            startActivity(it)
-                            finish()
-                        }
+                        finish()
                     } else if (response.code() == 400) {
                         Toast.makeText(
                             this@RegisterActivity2, "Please try Again!",

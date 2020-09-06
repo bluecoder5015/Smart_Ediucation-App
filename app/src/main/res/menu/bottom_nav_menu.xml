@@ -4,7 +4,7 @@
     <item
         android:id="@+id/todos_item"
         android:title="Todos"
-        android:icon="@drawable/ic_todos"/>
+        android:icon="@drawable/ic_home"/>
 
     <item
         android:id="@+id/subject_item"

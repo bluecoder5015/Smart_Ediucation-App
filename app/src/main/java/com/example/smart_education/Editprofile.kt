@@ -21,7 +21,7 @@ class Editprofile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editprofile)
-        val BASE_URL = "http://192.168.43.114:3000"
+        val BASE_URL = "http://192.168.43.208:3000"
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -37,7 +37,7 @@ class Editprofile : AppCompatActivity() {
         map["email"]=email
         edit_profile_save_btn.setOnClickListener {
             val call: Call<Void> = retrofitInterface.update(map)
-            call!!.enqueue(object : Callback<Void> {
+            call.enqueue(object : Callback<Void> {
                 override fun onResponse(
                     call: Call<Void>?,
                     response: Response<Void>

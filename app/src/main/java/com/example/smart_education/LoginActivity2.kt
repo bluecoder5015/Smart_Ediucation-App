@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class LoginActivity2 : AppCompatActivity() {
 
     var isRemember =false
-    private val BASE_URL = "http://192.168.43.114:3000"
+    val BASE_URL = "http://192.168.43.208:3000"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,6 +89,7 @@ class LoginActivity2 : AppCompatActivity() {
                             progress.dismiss()
 
                             Intent(this@LoginActivity2,MainActivity::class.java).also{
+                                it.putExtra("Email",email)
                                 startActivity(it)
                                 finish()
                             }

@@ -30,7 +30,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
         var docpreferences = activity?.getSharedPreferences("LOGIN", Context.MODE_PRIVATE)
         val email = docpreferences?.getString("EMAIL","")
 
-        val BASE_URL = "http://192.168.43.114:3000"
+        val BASE_URL = "http://192.168.43.208:3000"
 
         val progress = ProgressDialog(context)
         progress.setMessage("Verifying Credentials :) ")
@@ -101,7 +101,8 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
         val formate = SimpleDateFormat("dd/MM/YYYY", Locale.getDefault())
         var date: String = ""
 
-        refresh_todo.setOnClickListener {
+       /* refresh_todo.setOnClickListener {
+            it.visibility=View.GONE
             for(i in 0 until size){
                 if(todolist[i].done=="Yes")
                 {
@@ -146,7 +147,7 @@ class TodoFragment : Fragment(R.layout.fragment_todo){
                     })
                 }
             }
-        }
+        }*/
         todo_time.setOnClickListener {
             val now = Calendar.getInstance()
             val datePicker = DatePickerDialog(

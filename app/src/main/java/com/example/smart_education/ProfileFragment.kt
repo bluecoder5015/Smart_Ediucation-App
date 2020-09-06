@@ -20,7 +20,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val BASE_URL = "http://192.168.43.114:3000"
+        val BASE_URL = "http://192.168.43.208:3000"
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -30,7 +30,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val retrofitInterface: RetrofitInterface =
             retrofit.create(RetrofitInterface::class.java)
         val call: Call<Profile> = retrofitInterface.details(email)
-        call!!.enqueue(object : Callback<Profile> {
+        call.enqueue(object : Callback<Profile> {
             override fun onResponse(
                 call: Call<Profile>?,
                 response: Response<Profile>

@@ -18,8 +18,8 @@ class Todo_history : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todo_history)
-        val email = intent.getStringExtra("EMAILID")
 
+        val email = intent.getStringExtra("EMAILID")
         val BASE_URL = "http://192.168.43.208:3000"
 
         val progress = ProgressDialog(this)
@@ -35,7 +35,7 @@ class Todo_history : AppCompatActivity() {
         val retrofitInterface: RetrofitInterface =
             retrofit.create(RetrofitInterface::class.java)
 
-        val call: Call<Array<Todos>?>? = email?.let { retrofitInterface.executeGettodos(it) }
+        val call: Call<Array<Todos>?>? = email?.let { retrofitInterface.executeGetpending(it) }
         call!!.enqueue(object : Callback<Array<Todos>?> {
             override fun onResponse(
                 call: Call<Array<Todos>?>?,
